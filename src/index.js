@@ -1,9 +1,3 @@
-/**
- * Parse a string that represents a git patch
- * @param  {String} contents The contents of the patch to parse
- * @return {Object}          An object where the keys are filenames, and the
- * values are the contents of the diff
- */
 export function parsePatch(contents) {
   const sha = contents.split(" ")[1];
 
