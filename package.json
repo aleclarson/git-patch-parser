@@ -3,29 +3,18 @@
   "version": "0.2.0",
   "description": "Parse Git patch files",
   "main": "lib/index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "test": "jest",
     "build": "babel -d lib/ src/",
     "prepublish": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/meteor/git-patch-parser.git"
-  },
+  "repository": "aleclarson/git-patch-parser",
   "keywords": [
     "git",
     "patch",
     "parse"
   ],
-  "author": "mdg",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/meteor/git-patch-parser/issues"
-  },
-  "homepage": "https://github.com/meteor/git-patch-parser",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
