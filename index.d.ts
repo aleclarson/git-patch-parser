@@ -1,27 +1,31 @@
 export interface DiffLine {
-  type: 'context' | 'added' | 'removed'
-  content: string
+  prefix: " " | "+" | "-";
+  text: string;
 }
 
 export interface DiffRange {
-  start: number
-  lines: number
+  start: number;
+  length: number;
 }
 
-export interface DiffSection {
-  lines: DiffLine[]
-  lineNumbers: {
-    added: DiffRange
-    removed: DiffRange
-  }
+export interface DiffChunk {
+  lines: DiffLine[];
+  inputRange: DiffRange;
+  outputRange: DiffRange;
 }
+
+export type ParsedChange =
+  | { type: "add"; file: string; text: string }
+  | { type: "delete"; file: string; text: string }
+  | { type: "rename"; file: string; dest: string }
+  | { type: "change"; file: string; diff: DiffChunk[] };
 
 export interface ParsedPatch {
-  sha: string
-  message: string
-  files: { [file: string]: DiffSection[] }
+  sha: string;
+  message: string;
+  changes: ParsedChange[];
 }
 
-export function parsePatch(contents: string): ParsedPatch
-export function parseMultiPatch(contents: string): ParsedPatch[]
-export function parseUnifiedDiff(contents: string): DiffSection[]
+export function parsePatch(contents: string): ParsedPatch;
+export function parseMultiPatch(contents: string): ParsedPatch[];
+export function parseUnifiedDiff(contents: string): DiffChunk[];

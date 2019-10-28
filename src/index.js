@@ -1,38 +1,45 @@
 export function parsePatch(contents) {
-  const sha = contents.split(" ")[1];
+  const patch = {
+    sha: /^From ([^ ]+)/.exec(contents)[1],
+    message: /^Subject: \[.+?\] ([\S\s]+)?^---$/m.exec(contents)[1].trim(),
+    changes: [],
+  };
 
-  const message = /^Subject: \[.+?\] ([\S\s]+)?^---$/m
-    .exec(contents)[1]
-    .trim()
-    .replace("\n", "");
+  const fileChunks = contents.split(/^diff --git /m);
+  fileChunks.slice(1).forEach((chunk) => {
+    // Parse the old filename.
+    const fileMatch = /^--- a\/(.+)$/m.exec(chunk);
+    const file = fileMatch && fileMatch[1];
 
-  const fileParts = contents.split(/^diff --git /m).slice(1);
-  const files = {};
+    // Parse the new filename.
+    const destMatch = /^\+\+\+ b\/(.+)$/m.exec(chunk);
+    const dest = destMatch && destMatch[1];
 
-  fileParts.forEach((part) => {
-    const start = part.indexOf("@@");
-    const diffContents = part.slice(start);
+    const change = {
+      type: file ? (dest ? "change" : "delete") : "add",
+      file: file || dest,
+    };
 
-    // XXX won't work with spaces in filenames
-    const fileNameMatch = /^\+\+\+ b\/(.+)$/m.exec(part);
+    patch.changes.push(change);
 
-    if (!fileNameMatch) {
-      // This was probably a deleted file
-      return;
+    const diff = chunk.slice(chunk.indexOf("@@"));
+    if (file && dest) {
+      change.diff = parseUnifiedDiff(diff);
+
+      // Renames come after any changes to the renamed file.
+      if (file !== dest) {
+        patch.changes.push({
+          type: "rename",
+          file,
+          dest,
+        });
+      }
+    } else {
+      change.text = parseFirstChunk(diff);
     }
-
-    const fileName = fileNameMatch[1];
-
-    const fileData = parseUnifiedDiff(diffContents);
-
-    files[fileName] = fileData;
   });
 
-  return {
-    files,
-    sha,
-    message,
-  };
+  return patch;
 }
 
 export function parseMultiPatch(contents) {
@@ -44,101 +51,62 @@ export function parseMultiPatch(contents) {
     patchIndices.push(match.index);
   }
 
-  const patches = [];
-  patchIndices.forEach((_, i) => {
-    let patchContent = "";
+  return patchIndices.map((_, i) => {
+    const patchContent = contents
+      .slice(patchIndices[i], patchIndices[i + 1])
+      // Remove the weird -- 2.2.1 part at the end of every patch
+      .split(/^-- $/m)[0];
 
-    if (i + 1 < patchIndices.length) {
-      patchContent = contents.slice(patchIndices[i], patchIndices[i + 1]);
-    } else {
-      patchContent = contents.slice(patchIndices[i]);
-    }
-
-    // Remove the weird -- 2.2.1 part at the end of every patch
-    patchContent = patchContent.split(/^-- $/m)[0];
-    patches.push(patchContent);
+    return parsePatch(patchContent);
   });
-
-  return patches.map(parsePatch);
 }
 
-export function parseUnifiedDiff(diffContents) {
-  const diffLines = diffContents.split(/\r?\n/);
-  const lineNumbers = diffLines[0];
+const lineRangeRE = /^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/;
 
-  // Take off the last line which is just empty
-  const contentPatchLines = diffLines.slice(0, diffLines.length - 1);
+export function parseUnifiedDiff(contents) {
+  const chunks = [];
 
-  const parsedLines = contentPatchLines.map((line) => {
-    // If the line starts with a backslash, it's not part of the patch. In
-    // particular, this is the case with the "no newline at end of file" thing
-    if (!line || /^\\/.test(line)) {
-      // The last line ends up being an empty string
-      return null;
+  // Ignore the last line which is always empty
+  const lines = contents.split(/\r?\n/).slice(0, -1);
+  for (let i = 0; i < lines.length; i++) {
+    const range = lines[i];
+
+    // Every chunk begins with two line ranges.
+    let rangeMatch = lineRangeRE.exec(range);
+    if (!rangeMatch) {
+      break;
     }
 
-    if (/^@/.test(line)) {
-      type = "lineNumbers";
-
-      const lineNumberMatch = /^@@ -(\d+),?(\d+)? \+(\d+),?(\d+)? @@/
-        .exec(line)
-        .map((str) => {
-          return parseInt(str, 10);
-        });
-
-      return {
-        type,
-        lineNumbers: {
-          removed: {
-            start: lineNumberMatch[1],
-            lines: lineNumberMatch[2],
-          },
-          added: {
-            start: lineNumberMatch[3],
-            lines: lineNumberMatch[4],
-          },
-        },
-      };
-    }
-
-    let type = "context";
-    if (/^\+/.test(line)) {
-      type = "added";
-    } else if (/^-/.test(line)) {
-      type = "removed";
-    }
-
-    const content = line.slice(1);
-
-    return {
-      type,
-      content: content,
+    const match = rangeMatch.map(Number);
+    const chunk = {
+      lines: [],
+      inputRange: { start: match[1], length: match[2] },
+      outputRange: { start: match[3], length: match[4] },
     };
-  });
 
-  // Now that we have parsed all of the lines, assemble them into sections that
-  // have their own line number ranges
-  const sections = [];
-  let currSection;
-
-  parsedLines.forEach((line) => {
-    if (line !== null) {
-      if (line.type == "lineNumbers") {
-        if (currSection) {
-          sections.push(currSection);
-        }
-
-        currSection = {
-          lines: [],
-          lineNumbers: line.lineNumbers,
-        };
-      } else {
-        currSection.lines.push(line);
+    for (let line = lines[++i]; line && line[0] != "@"; line = lines[++i]) {
+      // Lines that begin with a backslash are not actual lines.
+      // For example, the removal of a trailing newline.
+      if (line[0] == "\\") {
+        continue;
       }
+      chunk.lines.push({
+        prefix: line[0],
+        text: line.slice(1),
+      });
     }
-  });
 
-  sections.push(currSection);
+    chunks.push(chunk);
+  }
 
-  return sections;
+  return chunks;
+}
+
+// Parse the contents of the first chunk in a diff.
+function parseFirstChunk(diff) {
+  return diff
+    .split(/\r?\n/)
+    .slice(1)
+    .map((line) => line.slice(1))
+    .join("\n");
 }
