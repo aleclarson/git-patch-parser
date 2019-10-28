@@ -69,7 +69,7 @@ export function parseMultiPatch(contents) {
 }
 
 export function parseUnifiedDiff(diffContents) {
-  const diffLines = diffContents.split("\n");
+  const diffLines = diffContents.split(/\r?\n/);
   const lineNumbers = diffLines[0];
 
   // Take off the last line which is just empty
