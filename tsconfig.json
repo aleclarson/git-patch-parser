@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017"],
+    "strict": true,
+    "plugins": [{ "name": "typescript-snapshots-plugin" }]
+  }
+}

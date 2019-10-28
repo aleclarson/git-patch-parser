@@ -1,0 +1,268 @@
+From d7a5e7f791c6f6659c4767f8bb4afa853d793647 Mon Sep 17 00:00:00 2001
+From: Sashko Stubailo <sashko@stubailo.com>
+Date: Mon, 13 Jul 2015 12:00:51 -0700
+Subject: [PATCH 01/41] Step 1: Run `meteor create`
+
+---
+ .meteor/.finished-upgraders |  8 ++++++++
+ .meteor/.gitignore          |  1 +
+ .meteor/.id                 |  7 +++++++
+ .meteor/packages            |  9 +++++++++
+ .meteor/platforms           |  2 ++
+ .meteor/release             |  1 +
+ .meteor/versions            | 48 +++++++++++++++++++++++++++++++++++++++++++++
+ simple-todos-react.css      |  1 +
+ simple-todos-react.html     | 14 +++++++++++++
+ simple-todos-react.js       | 23 ++++++++++++++++++++++
+ 10 files changed, 114 insertions(+)
+ create mode 100644 .meteor/.finished-upgraders
+ create mode 100644 .meteor/.gitignore
+ create mode 100644 .meteor/.id
+ create mode 100644 .meteor/packages
+ create mode 100644 .meteor/platforms
+ create mode 100644 .meteor/release
+ create mode 100644 .meteor/versions
+ create mode 100644 simple-todos-react.css
+ create mode 100644 simple-todos-react.html
+ create mode 100644 simple-todos-react.js
+
+diff --git a/.meteor/.finished-upgraders b/.meteor/.finished-upgraders
+new file mode 100644
+index 0000000..8a76103
+--- /dev/null
++++ b/.meteor/.finished-upgraders
+@@ -0,0 +1,8 @@
++# This file contains information which helps Meteor properly upgrade your
++# app when you run 'meteor update'. You should check it into version control
++# with your project.
++
++notices-for-0.9.0
++notices-for-0.9.1
++0.9.4-platform-file
++notices-for-facebook-graph-api-2
+diff --git a/.meteor/.gitignore b/.meteor/.gitignore
+new file mode 100644
+index 0000000..4083037
+--- /dev/null
++++ b/.meteor/.gitignore
+@@ -0,0 +1 @@
++local
+diff --git a/.meteor/.id b/.meteor/.id
+new file mode 100644
+index 0000000..3bab3ba
+--- /dev/null
++++ b/.meteor/.id
+@@ -0,0 +1,7 @@
++# This file contains a token that is unique to your project.
++# Check it into your repository along with the rest of this directory.
++# It can be used for purposes such as:
++#   - ensuring you don't accidentally deploy one app on top of another
++#   - providing package authors with aggregated statistics
++
++ucqipf8prm38bs7dxj
+diff --git a/.meteor/packages b/.meteor/packages
+new file mode 100644
+index 0000000..99704e0
+--- /dev/null
++++ b/.meteor/packages
+@@ -0,0 +1,9 @@
++# Meteor packages used by this project, one per line.
++# Check this file (and the other files in this directory) into your repository.
++#
++# 'meteor add' and 'meteor remove' will edit this file for you,
++# but you can also edit it by hand.
++
++meteor-platform
++autopublish
++insecure
+diff --git a/.meteor/platforms b/.meteor/platforms
+new file mode 100644
+index 0000000..efeba1b
+--- /dev/null
++++ b/.meteor/platforms
+@@ -0,0 +1,2 @@
++server
++browser
+diff --git a/.meteor/release b/.meteor/release
+new file mode 100644
+index 0000000..dab6b55
+--- /dev/null
++++ b/.meteor/release
+@@ -0,0 +1 @@
++METEOR@1.1.0.2
+diff --git a/.meteor/versions b/.meteor/versions
+new file mode 100644
+index 0000000..410e1d9
+--- /dev/null
++++ b/.meteor/versions
+@@ -0,0 +1,48 @@
++autopublish@1.0.3
++autoupdate@1.2.1
++base64@1.0.3
++binary-heap@1.0.3
++blaze@2.1.2
++blaze-tools@1.0.3
++boilerplate-generator@1.0.3
++callback-hook@1.0.3
++check@1.0.5
++ddp@1.1.0
++deps@1.0.7
++ejson@1.0.6
++fastclick@1.0.3
++geojson-utils@1.0.3
++html-tools@1.0.4
++htmljs@1.0.4
++http@1.1.0
++id-map@1.0.3
++insecure@1.0.3
++jquery@1.11.3_2
++json@1.0.3
++launch-screen@1.0.2
++livedata@1.0.13
++logging@1.0.7
++meteor@1.1.6
++meteor-platform@1.2.2
++minifiers@1.1.5
++minimongo@1.0.8
++mobile-status-bar@1.0.3
++mongo@1.1.0
++observe-sequence@1.0.6
++ordered-dict@1.0.3
++random@1.0.3
++reactive-dict@1.1.0
++reactive-var@1.0.5
++reload@1.1.3
++retry@1.0.3
++routepolicy@1.0.5
++session@1.1.0
++spacebars@1.0.6
++spacebars-compiler@1.0.6
++templating@1.1.1
++tracker@1.0.7
++ui@1.0.6
++underscore@1.0.3
++url@1.0.4
++webapp@1.2.0
++webapp-hashing@1.0.3
+diff --git a/simple-todos-react.css b/simple-todos-react.css
+new file mode 100644
+index 0000000..b6b4052
+--- /dev/null
++++ b/simple-todos-react.css
+@@ -0,0 +1 @@
++/* CSS declarations go here */
+diff --git a/simple-todos-react.html b/simple-todos-react.html
+new file mode 100644
+index 0000000..e296a58
+--- /dev/null
++++ b/simple-todos-react.html
+@@ -0,0 +1,14 @@
++<head>
++  <title>simple-todos-react</title>
++</head>
++
++<body>
++  <h1>Welcome to Meteor!</h1>
++
++  {{> hello}}
++</body>
++
++<template name="hello">
++  <button>Click Me</button>
++  <p>You've pressed the button {{counter}} times.</p>
++</template>
+diff --git a/simple-todos-react.js b/simple-todos-react.js
+new file mode 100644
+index 0000000..4f8c65d
+--- /dev/null
++++ b/simple-todos-react.js
+@@ -0,0 +1,23 @@
++if (Meteor.isClient) {
++  // counter starts at 0
++  Session.setDefault('counter', 0);
++
++  Template.hello.helpers({
++    counter: function () {
++      return Session.get('counter');
++    }
++  });
++
++  Template.hello.events({
++    'click button': function () {
++      // increment the counter when button is clicked
++      Session.set('counter', Session.get('counter') + 1);
++    }
++  });
++}
++
++if (Meteor.isServer) {
++  Meteor.startup(function () {
++    // code to run on server at startup
++  });
++}
+--
+2.2.1
+
+
+From 96bd5130dbd707aa497a0effa85cb7316cd7d560 Mon Sep 17 00:00:00 2001
+From: Sashko Stubailo <sashko@stubailo.com>
+Date: Mon, 13 Jul 2015 12:02:01 -0700
+Subject: [PATCH 02/41] Step 2.1: Add the React package
+
+---
+ .meteor/packages |  1 +
+ .meteor/versions | 10 ++++++++++
+ 2 files changed, 11 insertions(+)
+
+diff --git a/.meteor/packages b/.meteor/packages
+index 99704e0..10cd8b0 100644
+--- a/.meteor/packages
++++ b/.meteor/packages
+@@ -7,3 +7,4 @@
+ meteor-platform
+ autopublish
+ insecure
++react
+diff --git a/.meteor/versions b/.meteor/versions
+index 410e1d9..288ee5f 100644
+--- a/.meteor/versions
++++ b/.meteor/versions
+@@ -1,5 +1,7 @@
+ autopublish@1.0.3
+ autoupdate@1.2.1
++babel-compiler@5.6.15
++babel-runtime@0.1.1
+ base64@1.0.3
+ binary-heap@1.0.3
+ blaze@2.1.2
+@@ -7,6 +9,8 @@ blaze-tools@1.0.3
+ boilerplate-generator@1.0.3
+ callback-hook@1.0.3
+ check@1.0.5
++coffeescript@1.0.6
++cosmos:browserify@0.4.0
+ ddp@1.1.0
+ deps@1.0.7
+ ejson@1.0.6
+@@ -19,6 +23,7 @@ id-map@1.0.3
+ insecure@1.0.3
+ jquery@1.11.3_2
+ json@1.0.3
++jsx@0.1.1
+ launch-screen@1.0.2
+ livedata@1.0.13
+ logging@1.0.7
+@@ -31,6 +36,11 @@ mongo@1.1.0
+ observe-sequence@1.0.6
+ ordered-dict@1.0.3
+ random@1.0.3
++react@0.1.2
++react-meteor-data@0.1.0
++react-runtime@0.13.3_2
++react-runtime-dev@0.13.3_2
++react-runtime-prod@0.13.3_1
+ reactive-dict@1.1.0
+ reactive-var@1.0.5
+ reload@1.1.3
+--
+2.2.1

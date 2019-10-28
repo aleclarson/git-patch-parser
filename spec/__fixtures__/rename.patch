@@ -1,0 +1,17 @@
+From 8046002a8c1b736cde7090f6af14e06420a5729d Mon Sep 17 00:00:00 2001
+From: Alec Larson <alec.stanford.larson@gmail.com>
+Date: Mon, 28 Oct 2019 18:21:24 -0400
+Subject: [PATCH] tmp
+
+---
+ .babelrc => .bab | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename .babelrc => .bab (100%)
+
+diff --git a/.babelrc b/.bab
+similarity index 100%
+rename from .babelrc
+rename to .bab
+-- 
+2.19.2
+

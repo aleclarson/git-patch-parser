@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "test/run.sh",
-    "compile": "babel -d lib/ src/",
-    "prepublish": "npm run compile"
+    "test": "jest",
+    "build": "babel -d lib/ src/",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,13 @@
   },
   "homepage": "https://github.com/meteor/git-patch-parser",
   "devDependencies": {
-    "babel": "^5.8.3",
-    "mocha": "^2.2.5",
-    "prettier": "^1.18.2"
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/jest": "^24.0.20",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.4",
+    "typescript-snapshots-plugin": "^1.7.0"
   }
 }

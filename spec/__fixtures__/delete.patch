@@ -1,0 +1,27 @@
+From e6e150aea92b5eb626b611a54505fcfb74e1a7d8 Mon Sep 17 00:00:00 2001
+From: Alec Larson <alec.stanford.larson@gmail.com>
+Date: Mon, 28 Oct 2019 18:23:07 -0400
+Subject: [PATCH] tmp
+
+---
+ .prettierrc | 8 --------
+ 1 file changed, 8 deletions(-)
+ delete mode 100644 .prettierrc
+
+diff --git a/.prettierrc b/.prettierrc
+deleted file mode 100644
+index c584b0b..0000000
+--- a/.prettierrc
++++ /dev/null
+@@ -1,8 +0,0 @@
+-{
+-  "bracketSpacing": true,
+-  "jsxBracketSameLine": true,
+-  "singleQuote": false,
+-  "semi": true,
+-  "trailingComma": "es5",
+-  "arrowParens": "always"
+-}
+-- 
+2.19.2
+
