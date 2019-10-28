@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "/Users/alec/dev/modules/check-git-patch"
+    },
+    {
+      "path": "/Users/alec/dev/modules/check-git-patch/vendor/git-patch-parser"
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "git-patch-parser/node_modules/typescript/lib"
+  }
+}
