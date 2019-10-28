@@ -1,5 +1,5 @@
 {
-  "name": "git-patch-parser",
+  "name": "@alloc/git-patch-parser",
   "version": "0.2.0",
   "description": "Parse Git patch files",
   "main": "lib/index.js",
