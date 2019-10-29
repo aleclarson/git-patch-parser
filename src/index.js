@@ -5,6 +5,9 @@ export function parsePatch(contents) {
     changes: [],
   };
 
+  // Remove the weird -- 2.2.1 part at the end of every patch
+  contents = contents.split(/^-- $/m)[0];
+
   const fileChunks = contents.split(/^diff --git /m);
   fileChunks.slice(1).forEach((chunk) => {
     // Parse the old filename.
@@ -62,14 +65,9 @@ export function parseMultiPatch(contents) {
     patchIndices.push(match.index);
   }
 
-  return patchIndices.map((_, i) => {
-    const patchContent = contents
-      .slice(patchIndices[i], patchIndices[i + 1])
-      // Remove the weird -- 2.2.1 part at the end of every patch
-      .split(/^-- $/m)[0];
-
-    return parsePatch(patchContent);
-  });
+  return patchIndices.map((_, i) =>
+    parsePatch(contents.slice(patchIndices[i], patchIndices[i + 1]))
+  );
 }
 
 const lineRangeRE = /^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/;
