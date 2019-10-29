@@ -8,9 +8,6 @@ Object {
       "text": "{
   \\"presets\\": [\\"@babel/env\\", \\"@babel/typescript\\"]
 }
-- 
-.19.2
-
 ",
       "type": "add",
     },
@@ -24,19 +21,53 @@ exports[`Parses file deletions 1`] = `
 Object {
   "changes": Array [
     Object {
+      "diff": Array [
+        Object {
+          "inputRange": Object {
+            "length": 8,
+            "start": 1,
+          },
+          "lines": Array [
+            Object {
+              "prefix": "-",
+              "text": "{",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  \\"bracketSpacing\\": true,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  \\"jsxBracketSameLine\\": true,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  \\"singleQuote\\": false,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  \\"semi\\": true,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  \\"trailingComma\\": \\"es5\\",",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  \\"arrowParens\\": \\"always\\"",
+            },
+            Object {
+              "prefix": "-",
+              "text": "}",
+            },
+          ],
+          "outputRange": Object {
+            "length": 0,
+            "start": 0,
+          },
+        },
+      ],
       "file": ".prettierrc",
-      "text": "{
-  \\"bracketSpacing\\": true,
-  \\"jsxBracketSameLine\\": true,
-  \\"singleQuote\\": false,
-  \\"semi\\": true,
-  \\"trailingComma\\": \\"es5\\",
-  \\"arrowParens\\": \\"always\\"
-}
-- 
-.19.2
-
-",
       "type": "delete",
     },
   ],
@@ -438,10 +469,6 @@ Object {
             Object {
               "prefix": " ",
               "text": "  },",
-            },
-            Object {
-              "prefix": "-",
-              "text": "- ",
             },
           ],
           "outputRange": Object {

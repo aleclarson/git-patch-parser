@@ -33,14 +33,12 @@ export function parsePatch(contents) {
     };
 
     const diff = chunk.slice(chunk.indexOf("@@"));
-    if (file && dest) {
+    if (file) {
       change.diff = parseUnifiedDiff(diff);
       if (change.diff.length) {
         patch.changes.push(change);
       }
-
-      // Renames come after any changes to the renamed file.
-      if (file !== dest) {
+      if (dest && file !== dest) {
         patch.changes.push({
           type: "rename",
           file,

@@ -16,9 +16,9 @@ export interface DiffChunk {
 
 export type ParsedChange =
   | { type: "add"; file: string; text: string }
-  | { type: "delete"; file: string; text: string }
   | { type: "rename"; file: string; dest: string }
-  | { type: "change"; file: string; diff: DiffChunk[] };
+  | { type: "change"; file: string; diff: DiffChunk[] }
+  | { type: "delete"; file: string; diff: DiffChunk[] };
 
 export interface ParsedPatch {
   sha: string;
