@@ -91,7 +91,11 @@ export function parseUnifiedDiff(contents) {
       outputRange: { start: match[3], length: match[4] },
     };
 
-    for (let line = lines[++i]; line && line[0] != "@"; line = lines[++i]) {
+    for (
+      let line = lines[++i];
+      line != null && line[0] != "@";
+      line = lines[++i]
+    ) {
       // Lines that begin with a backslash are not actual lines.
       // For example, the removal of a trailing newline.
       if (line[0] == "\\") {
