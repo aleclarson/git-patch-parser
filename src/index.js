@@ -75,7 +75,7 @@ export function parseUnifiedDiff(contents) {
 
   // Ignore the last line which is always empty
   const lines = contents.split(/\r?\n/).slice(0, -1);
-  for (let i = 0; i < lines.length; i++) {
+  for (let i = 0; i < lines.length; ) {
     const range = lines[i];
 
     // Every chunk begins with two line ranges.
