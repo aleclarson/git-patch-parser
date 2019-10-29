@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Parses file additions 1`] = `
-Object {
-  "changes": Array [
-    Object {
-      "file": ".babelrc",
-      "text": "{
-  \\"presets\\": [\\"@babel/env\\", \\"@babel/typescript\\"]
-}
-",
-      "type": "add",
-    },
-  ],
-  "message": "boop",
-  "sha": "da991f76c33de0a0e3b4c824a67496d01e01ab1e",
-}
-`;
-
-exports[`Parses file deletions 1`] = `
+exports[`can parse a deleted file 1`] = `
 Object {
   "changes": Array [
     Object {
@@ -76,7 +59,7 @@ Object {
 }
 `;
 
-exports[`Parses file renames 1`] = `
+exports[`can parse a renamed file 1`] = `
 Object {
   "changes": Array [
     Object {
@@ -90,399 +73,757 @@ Object {
 }
 `;
 
-exports[`Reading multi patch Parses the example patch 1`] = `
-Array [
-  Object {
-    "changes": Array [
-      Object {
-        "file": ".meteor/.finished-upgraders",
-        "text": "# This file contains information which helps Meteor properly upgrade your
-# app when you run 'meteor update'. You should check it into version control
-# with your project.
-
-notices-for-0.9.0
-notices-for-0.9.1
-0.9.4-platform-file
-notices-for-facebook-graph-api-2
-",
-        "type": "add",
-      },
-      Object {
-        "file": ".meteor/.gitignore",
-        "text": "local
-",
-        "type": "add",
-      },
-      Object {
-        "file": ".meteor/.id",
-        "text": "# This file contains a token that is unique to your project.
-# Check it into your repository along with the rest of this directory.
-# It can be used for purposes such as:
-#   - ensuring you don't accidentally deploy one app on top of another
-#   - providing package authors with aggregated statistics
-
-ucqipf8prm38bs7dxj
-",
-        "type": "add",
-      },
-      Object {
-        "file": ".meteor/packages",
-        "text": "# Meteor packages used by this project, one per line.
-# Check this file (and the other files in this directory) into your repository.
-#
-# 'meteor add' and 'meteor remove' will edit this file for you,
-# but you can also edit it by hand.
-
-meteor-platform
-autopublish
-insecure
-",
-        "type": "add",
-      },
-      Object {
-        "file": ".meteor/platforms",
-        "text": "server
-browser
-",
-        "type": "add",
-      },
-      Object {
-        "file": ".meteor/release",
-        "text": "METEOR@1.1.0.2
-",
-        "type": "add",
-      },
-      Object {
-        "file": ".meteor/versions",
-        "text": "autopublish@1.0.3
-autoupdate@1.2.1
-base64@1.0.3
-binary-heap@1.0.3
-blaze@2.1.2
-blaze-tools@1.0.3
-boilerplate-generator@1.0.3
-callback-hook@1.0.3
-check@1.0.5
-ddp@1.1.0
-deps@1.0.7
-ejson@1.0.6
-fastclick@1.0.3
-geojson-utils@1.0.3
-html-tools@1.0.4
-htmljs@1.0.4
-http@1.1.0
-id-map@1.0.3
-insecure@1.0.3
-jquery@1.11.3_2
-json@1.0.3
-launch-screen@1.0.2
-livedata@1.0.13
-logging@1.0.7
-meteor@1.1.6
-meteor-platform@1.2.2
-minifiers@1.1.5
-minimongo@1.0.8
-mobile-status-bar@1.0.3
-mongo@1.1.0
-observe-sequence@1.0.6
-ordered-dict@1.0.3
-random@1.0.3
-reactive-dict@1.1.0
-reactive-var@1.0.5
-reload@1.1.3
-retry@1.0.3
-routepolicy@1.0.5
-session@1.1.0
-spacebars@1.0.6
-spacebars-compiler@1.0.6
-templating@1.1.1
-tracker@1.0.7
-ui@1.0.6
-underscore@1.0.3
-url@1.0.4
-webapp@1.2.0
-webapp-hashing@1.0.3
-",
-        "type": "add",
-      },
-      Object {
-        "file": "simple-todos-react.css",
-        "text": "/* CSS declarations go here */
-",
-        "type": "add",
-      },
-      Object {
-        "file": "simple-todos-react.html",
-        "text": "<head>
-  <title>simple-todos-react</title>
-</head>
-
-<body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-</body>
-
-<template name=\\"hello\\">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-",
-        "type": "add",
-      },
-      Object {
-        "file": "simple-todos-react.js",
-        "text": "if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+exports[`can parse an added file 1`] = `
+Object {
+  "changes": Array [
+    Object {
+      "file": ".babelrc",
+      "text": "{
+  \\"presets\\": [\\"@babel/env\\", \\"@babel/typescript\\"]
 }
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
--
-.2.1
-
-
 ",
-        "type": "add",
-      },
-    ],
-    "message": "Step 1: Run \`meteor create\`",
-    "sha": "d7a5e7f791c6f6659c4767f8bb4afa853d793647",
-  },
-  Object {
-    "changes": Array [
-      Object {
-        "diff": Array [
-          Object {
-            "inputRange": Object {
-              "length": 3,
-              "start": 7,
-            },
-            "lines": Array [
-              Object {
-                "prefix": " ",
-                "text": "meteor-platform",
-              },
-              Object {
-                "prefix": " ",
-                "text": "autopublish",
-              },
-              Object {
-                "prefix": " ",
-                "text": "insecure",
-              },
-              Object {
-                "prefix": "+",
-                "text": "react",
-              },
-            ],
-            "outputRange": Object {
-              "length": 4,
-              "start": 7,
-            },
-          },
-        ],
-        "file": ".meteor/packages",
-        "type": "change",
-      },
-      Object {
-        "diff": Array [
-          Object {
-            "inputRange": Object {
-              "length": 5,
-              "start": 1,
-            },
-            "lines": Array [
-              Object {
-                "prefix": " ",
-                "text": "autopublish@1.0.3",
-              },
-              Object {
-                "prefix": " ",
-                "text": "autoupdate@1.2.1",
-              },
-              Object {
-                "prefix": "+",
-                "text": "babel-compiler@5.6.15",
-              },
-              Object {
-                "prefix": "+",
-                "text": "babel-runtime@0.1.1",
-              },
-              Object {
-                "prefix": " ",
-                "text": "base64@1.0.3",
-              },
-              Object {
-                "prefix": " ",
-                "text": "binary-heap@1.0.3",
-              },
-              Object {
-                "prefix": " ",
-                "text": "blaze@2.1.2",
-              },
-            ],
-            "outputRange": Object {
-              "length": 7,
-              "start": 1,
-            },
-          },
-        ],
-        "file": ".meteor/versions",
-        "type": "change",
-      },
-    ],
-    "message": "Step 2.1: Add the React package",
-    "sha": "96bd5130dbd707aa497a0effa85cb7316cd7d560",
-  },
-]
+      "type": "add",
+    },
+  ],
+  "message": "boop",
+  "sha": "da991f76c33de0a0e3b4c824a67496d01e01ab1e",
+}
 `;
 
-exports[`Reading single patch Parses the example patch 1`] = `
+exports[`can parse multiple diffs for one file 1`] = `
 Object {
   "changes": Array [
     Object {
       "diff": Array [
         Object {
           "inputRange": Object {
-            "length": 15,
-            "start": 1,
+            "length": 14,
+            "start": 12,
           },
           "lines": Array [
             Object {
               "prefix": " ",
-              "text": "// App component - represents the whole app",
+              "text": " */",
             },
             Object {
               "prefix": " ",
-              "text": "App = React.createClass({",
-            },
-            Object {
-              "prefix": "-",
-              "text": "  getTasks() {",
-            },
-            Object {
-              "prefix": "-",
-              "text": "    return [",
-            },
-            Object {
-              "prefix": "-",
-              "text": "      { _id: 1, text: \\"This is task 1\\" },",
-            },
-            Object {
-              "prefix": "-",
-              "text": "      { _id: 2, text: \\"This is task 2\\" },",
-            },
-            Object {
-              "prefix": "-",
-              "text": "      { _id: 3, text: \\"This is task 3\\" }",
-            },
-            Object {
-              "prefix": "-",
-              "text": "    ];",
-            },
-            Object {
-              "prefix": "+",
-              "text": "",
-            },
-            Object {
-              "prefix": "+",
-              "text": "  // This mixin makes the getMeteorData method work",
-            },
-            Object {
-              "prefix": "+",
-              "text": "  mixins: [ReactMeteorData],",
-            },
-            Object {
-              "prefix": "+",
-              "text": "",
-            },
-            Object {
-              "prefix": "+",
-              "text": "  // Loads items from the Tasks collection and puts them on this.data.tasks",
-            },
-            Object {
-              "prefix": "+",
-              "text": "  getMeteorData() {",
-            },
-            Object {
-              "prefix": "+",
-              "text": "    return {",
-            },
-            Object {
-              "prefix": "+",
-              "text": "      tasks: Tasks.find({}).fetch()",
-            },
-            Object {
-              "prefix": "+",
-              "text": "    }",
-            },
-            Object {
-              "prefix": " ",
-              "text": "  },",
+              "text": "'use strict';",
             },
             Object {
               "prefix": " ",
               "text": "",
             },
             Object {
-              "prefix": " ",
-              "text": "  renderTasks() {",
+              "prefix": "-",
+              "text": "const ColorPropType = require('ColorPropType');",
             },
             Object {
               "prefix": "-",
-              "text": "    return this.getTasks().map((task) => {",
+              "text": "const EdgeInsetsPropType = require('EdgeInsetsPropType');",
+            },
+            Object {
+              "prefix": " ",
+              "text": "const NativeMethodsMixin = require('NativeMethodsMixin');",
+            },
+            Object {
+              "prefix": " ",
+              "text": "const React = require('React');",
+            },
+            Object {
+              "prefix": "-",
+              "text": "const PropTypes = require('prop-types');",
+            },
+            Object {
+              "prefix": " ",
+              "text": "const ReactNativeViewAttributes = require('ReactNativeViewAttributes');",
+            },
+            Object {
+              "prefix": "-",
+              "text": "const StyleSheetPropType = require('StyleSheetPropType');",
+            },
+            Object {
+              "prefix": "-",
+              "text": "const TextStylePropTypes = require('TextStylePropTypes');",
             },
             Object {
               "prefix": "+",
-              "text": "    // Get tasks from this.data.tasks",
-            },
-            Object {
-              "prefix": "+",
-              "text": "    return this.data.tasks.map((task) => {",
+              "text": "const TextPropTypes = require('TextPropTypes');",
             },
             Object {
               "prefix": " ",
-              "text": "      return <Task key={task._id} task={task} />;",
+              "text": "const Touchable = require('Touchable');",
             },
             Object {
               "prefix": " ",
-              "text": "    });",
+              "text": "const UIManager = require('UIManager');",
             },
             Object {
               "prefix": " ",
-              "text": "  },",
+              "text": "",
             },
           ],
           "outputRange": Object {
-            "length": 19,
-            "start": 1,
+            "length": 10,
+            "start": 12,
+          },
+        },
+        Object {
+          "inputRange": Object {
+            "length": 8,
+            "start": 27,
+          },
+          "lines": Array [
+            Object {
+              "prefix": " ",
+              "text": "const processColor = require('processColor');",
+            },
+            Object {
+              "prefix": " ",
+              "text": "const {ViewContextTypes} = require('ViewContext');",
+            },
+            Object {
+              "prefix": " ",
+              "text": "",
+            },
+            Object {
+              "prefix": "-",
+              "text": "const stylePropType = StyleSheetPropType(TextStylePropTypes);",
+            },
+            Object {
+              "prefix": "-",
+              "text": "",
+            },
+            Object {
+              "prefix": " ",
+              "text": "const viewConfig = {",
+            },
+            Object {
+              "prefix": " ",
+              "text": "  validAttributes: mergeFast(ReactNativeViewAttributes.UIView, {",
+            },
+            Object {
+              "prefix": " ",
+              "text": "    isHighlighted: true,",
+            },
+          ],
+          "outputRange": Object {
+            "length": 6,
+            "start": 23,
+          },
+        },
+        Object {
+          "inputRange": Object {
+            "length": 113,
+            "start": 55,
+          },
+          "lines": Array [
+            Object {
+              "prefix": " ",
+              "text": "",
+            },
+            Object {
+              "prefix": " ",
+              "text": "const Text = createReactClass({",
+            },
+            Object {
+              "prefix": " ",
+              "text": "  displayName: 'Text',",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  propTypes: {",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * When \`numberOfLines\` is set, this prop defines how text will be",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * truncated.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#ellipsizemode",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    ellipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Used to truncate the text with an ellipsis.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#numberoflines",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    numberOfLines: PropTypes.number,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Set text break strategy on Android.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#textbreakstrategy",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    textBreakStrategy: PropTypes.oneOf(['simple', 'highQuality', 'balanced']),",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Invoked on mount and layout changes.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#onlayout",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    onLayout: PropTypes.func,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * This function is called on press.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#onpress",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    onPress: PropTypes.func,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * This function is called on long press.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#onlongpress",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    onLongPress: PropTypes.func,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Defines how far your touch may move off of the button, before",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * deactivating the button.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#pressretentionoffset",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    pressRetentionOffset: EdgeInsetsPropType,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Lets the user select text.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#selectable",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    selectable: PropTypes.bool,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * The highlight color of the text.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#selectioncolor",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    selectionColor: ColorPropType,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * When \`true\`, no visual change is made when text is pressed down.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#supperhighlighting",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    suppressHighlighting: PropTypes.bool,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    style: stylePropType,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Used to locate this view in end-to-end tests.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#testid",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    testID: PropTypes.string,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Used to locate this view from native code.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#nativeid",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    nativeID: PropTypes.string,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Whether fonts should scale to respect Text Size accessibility settings.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#allowfontscaling",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    allowFontScaling: PropTypes.bool,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Indicates whether the view is an accessibility element.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#accessible",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    accessible: PropTypes.bool,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Whether font should be scaled down automatically.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#adjustsfontsizetofit",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    adjustsFontSizeToFit: PropTypes.bool,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Smallest possible scale a font can reach.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#minimumfontscale",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    minimumFontScale: PropTypes.number,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    /**",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * Specifies the disabled state of the text view for testing purposes.",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     *",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     * See https://facebook.github.io/react-native/docs/text.html#disabled",
+            },
+            Object {
+              "prefix": "-",
+              "text": "     */",
+            },
+            Object {
+              "prefix": "-",
+              "text": "    disabled: PropTypes.bool,",
+            },
+            Object {
+              "prefix": "-",
+              "text": "  },",
+            },
+            Object {
+              "prefix": "+",
+              "text": "  propTypes: TextPropTypes,",
+            },
+            Object {
+              "prefix": " ",
+              "text": "  getDefaultProps(): Object {",
+            },
+            Object {
+              "prefix": " ",
+              "text": "    return {",
+            },
+            Object {
+              "prefix": " ",
+              "text": "      accessible: true,",
+            },
+          ],
+          "outputRange": Object {
+            "length": 7,
+            "start": 49,
           },
         },
       ],
-      "file": "App.jsx",
+      "file": "Libraries/Text/Text.js",
       "type": "change",
     },
+    Object {
+      "file": "Libraries/Text/TextPropTypes.js",
+      "text": "/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @providesModule TextPropTypes
+ * @flow
+ * @format
+ */
+
+'use strict';
+
+const ColorPropType = require('ColorPropType');
+const EdgeInsetsPropType = require('EdgeInsetsPropType');
+const PropTypes = require('prop-types');
+const StyleSheetPropType = require('StyleSheetPropType');
+const TextStylePropTypes = require('TextStylePropTypes');
+
+const stylePropType = StyleSheetPropType(TextStylePropTypes);
+
+module.exports = {
+  /**
+   * When \`numberOfLines\` is set, this prop defines how text will be
+   * truncated.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#ellipsizemode
+   */
+  ellipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
+  /**
+   * Used to truncate the text with an ellipsis.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#numberoflines
+   */
+  numberOfLines: PropTypes.number,
+  /**
+   * Set text break strategy on Android.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#textbreakstrategy
+   */
+  textBreakStrategy: PropTypes.oneOf(['simple', 'highQuality', 'balanced']),
+  /**
+   * Invoked on mount and layout changes.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#onlayout
+   */
+  onLayout: PropTypes.func,
+  /**
+   * This function is called on press.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#onpress
+   */
+  onPress: PropTypes.func,
+  /**
+   * This function is called on long press.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#onlongpress
+   */
+  onLongPress: PropTypes.func,
+  /**
+   * Defines how far your touch may move off of the button, before
+   * deactivating the button.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#pressretentionoffset
+   */
+  pressRetentionOffset: EdgeInsetsPropType,
+  /**
+   * Lets the user select text.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#selectable
+   */
+  selectable: PropTypes.bool,
+  /**
+   * The highlight color of the text.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#selectioncolor
+   */
+  selectionColor: ColorPropType,
+  /**
+   * When \`true\`, no visual change is made when text is pressed down.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#supperhighlighting
+   */
+  suppressHighlighting: PropTypes.bool,
+  style: stylePropType,
+  /**
+   * Used to locate this view in end-to-end tests.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#testid
+   */
+  testID: PropTypes.string,
+  /**
+   * Used to locate this view from native code.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#nativeid
+   */
+  nativeID: PropTypes.string,
+  /**
+   * Whether fonts should scale to respect Text Size accessibility settings.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#allowfontscaling
+   */
+  allowFontScaling: PropTypes.bool,
+  /**
+   * Indicates whether the view is an accessibility element.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#accessible
+   */
+  accessible: PropTypes.bool,
+  /**
+   * Whether font should be scaled down automatically.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#adjustsfontsizetofit
+   */
+  adjustsFontSizeToFit: PropTypes.bool,
+  /**
+   * Smallest possible scale a font can reach.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#minimumfontscale
+   */
+  minimumFontScale: PropTypes.number,
+  /**
+   * Specifies the disabled state of the text view for testing purposes.
+   *
+   * See https://facebook.github.io/react-native/docs/text.html#disabled
+   */
+  disabled: PropTypes.bool,
+};
+",
+      "type": "add",
+    },
   ],
-  "message": "Step 3.2: Modify App component to get tasks from
- collection",
-  "sha": "ce86ff010f94a8a1cc2c8e6f9331df080565682b",
+  "message": "Move Text PropTypes to it's own file
+
+Reviewed By: fkgozali
+
+Differential Revision: D7226404
+
+fbshipit-source-id: b5637dee9a4f10daf0682e46f1ec8920ea03ae33",
+  "sha": "cd8128b2eccf6898cdf798a1e1be1f7a5762a0d4",
 }
 `;

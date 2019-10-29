@@ -6,41 +6,37 @@ beforeAll(() => {
   process.chdir(__dirname);
 });
 
-it("Parses file renames", () => {
+it("can parse a renamed file", () => {
   const contents = getFixture("rename.patch");
   const parsed = parsePatch(contents);
   expect(parsed).toMatchSnapshot();
 });
 
-it("Parses file deletions", () => {
+it("can parse a deleted file", () => {
   const contents = getFixture("delete.patch");
   const parsed = parsePatch(contents);
   expect(parsed).toMatchSnapshot();
 });
 
-it("Parses file additions", () => {
+it("can parse an added file", () => {
   const contents = getFixture("add.patch");
   const parsed = parsePatch(contents);
   expect(parsed).toMatchSnapshot();
 });
 
-it.todo("Parses trailing newlines");
-
-describe("Reading single patch", () => {
-  it("Parses the example patch", () => {
-    const contents = getFixture("react.single.patch");
-    const parsed = parsePatch(contents);
-    expect(parsed).toMatchSnapshot();
-  });
+fit("can parse multiple diffs for one file", () => {
+  const contents = getFixture("changes.patch");
+  const parsed = parsePatch(contents);
+  expect(parsed).toMatchSnapshot();
 });
 
-describe("Reading multi patch", () => {
-  it("Parses the example patch", () => {
-    const contents = getFixture("react.multi.patch");
-    const parsed = parseMultiPatch(contents);
-    expect(parsed).toMatchSnapshot();
-  });
+it("can parse multiple patches at once", () => {
+  const contents = getFixture("multi.patch");
+  const parsed = parseMultiPatch(contents);
+  expect(parsed).toMatchSnapshot();
 });
+
+it.todo("can parse the removal of a trailing newline");
 
 function getFixture(fixture: string) {
   return fs.readFileSync(path.join("__fixtures__", fixture), "utf8");
