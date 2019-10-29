@@ -9,22 +9,32 @@ export function parsePatch(contents) {
   fileChunks.slice(1).forEach((chunk) => {
     // Parse the old filename.
     const fileMatch = /^--- a\/(.+)$/m.exec(chunk);
-    const file = fileMatch && fileMatch[1];
+    let file = fileMatch && fileMatch[1];
 
     // Parse the new filename.
     const destMatch = /^\+\+\+ b\/(.+)$/m.exec(chunk);
-    const dest = destMatch && destMatch[1];
+    let dest = destMatch && destMatch[1];
+
+    if (!file && !dest) {
+      const renameFrom = /^rename from (.+)$/m.exec(chunk);
+      const renameTo = /^rename to (.+)$/m.exec(chunk);
+      if (renameFrom && renameTo) {
+        file = renameFrom[1];
+        dest = renameTo[1];
+      }
+    }
 
     const change = {
       type: file ? (dest ? "change" : "delete") : "add",
       file: file || dest,
     };
 
-    patch.changes.push(change);
-
     const diff = chunk.slice(chunk.indexOf("@@"));
     if (file && dest) {
       change.diff = parseUnifiedDiff(diff);
+      if (change.diff.length) {
+        patch.changes.push(change);
+      }
 
       // Renames come after any changes to the renamed file.
       if (file !== dest) {
@@ -36,6 +46,7 @@ export function parsePatch(contents) {
       }
     } else {
       change.text = parseFirstChunk(diff);
+      patch.changes.push(change);
     }
   });
 

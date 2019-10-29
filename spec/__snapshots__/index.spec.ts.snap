@@ -49,9 +49,9 @@ exports[`Parses file renames 1`] = `
 Object {
   "changes": Array [
     Object {
-      "file": null,
-      "text": "",
-      "type": "add",
+      "dest": ".bab",
+      "file": ".babelrc",
+      "type": "rename",
     },
   ],
   "message": "tmp",
