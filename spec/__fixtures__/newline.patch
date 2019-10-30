@@ -1,0 +1,17 @@
+From d7a5e7f791c6f6659c4767f8bb4afa853d793647 Mon Sep 17 00:00:00 2001
+From: Sashko Stubailo <sashko@stubailo.com>
+Date: Mon, 13 Jul 2015 12:00:51 -0700
+Subject: [PATCH] Add newline to .indo.json
+
+---
+
+diff --git a/.indo.json b/.indo.json
+index 9e26dfeeb6e..0967ef424bc 100644
+--- a/.indo.json
++++ b/.indo.json
+@@ -1 +1 @@
+-{}
+\ No newline at end of file
++[]
+-- 
+2.2.1

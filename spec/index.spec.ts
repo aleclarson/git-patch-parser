@@ -24,7 +24,7 @@ it("can parse an added file", () => {
   expect(parsed).toMatchSnapshot();
 });
 
-fit("can parse multiple diffs for one file", () => {
+it("can parse multiple diffs for one file", () => {
   const contents = getFixture("changes.patch");
   const parsed = parsePatch(contents);
   expect(parsed).toMatchSnapshot();
@@ -36,7 +36,11 @@ it("can parse multiple patches at once", () => {
   expect(parsed).toMatchSnapshot();
 });
 
-it.todo("can parse the removal of a trailing newline");
+it("can parse the removal of a trailing newline", () => {
+  const contents = getFixture("newline.patch");
+  const parsed = parseMultiPatch(contents);
+  expect(parsed).toMatchSnapshot();
+});
 
 function getFixture(fixture: string) {
   return fs.readFileSync(path.join("__fixtures__", fixture), "utf8");
